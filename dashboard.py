@@ -137,16 +137,22 @@ if dashboard == "Análise de Alunos":
 
     with col7:
         st.markdown('<div class="custom-title">📋 Status do Cadastro Responsável</div>', unsafe_allow_html=True)
-        
+
         # Processamento dos dados
         status = pd.read_csv("alunos.csv").dropna(subset=["StatusResponsavel"])
+
+        # Contar os status e renomear colunas corretamente
         status = status["StatusResponsavel"].value_counts().reset_index()
-        
-        # Gráfico atualizado
-        fig = px.pie(status, values="count", names="index", hole=0.4,
+        status.columns = ["StatusResponsavel", "Quantidade"]  # Renomear para colunas corretas
+
+        # Gráfico corrigido
+        fig = px.pie(status, values="Quantidade", names="StatusResponsavel", hole=0.4,
                     color_discrete_sequence=px.colors.sequential.Purples_r)
         fig.update_layout(height=400, showlegend=True)
         fig.update_traces(textposition='inside', textinfo='percent+label')
+
+        st.plotly_chart(fig, use_container_width=True)
+
 
 elif dashboard == "Análise das Aulas":
     # Header
