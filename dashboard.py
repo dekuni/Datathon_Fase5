@@ -143,11 +143,10 @@ if dashboard == "Análise de Alunos":
         status = status["StatusResponsavel"].value_counts().reset_index()
         
         # Gráfico atualizado
-        fig = px.pie(status, values="count", names="StatusResponsavel", hole=0.4,
+        fig = px.pie(status, values="count", names="index", hole=0.4,
                     color_discrete_sequence=px.colors.sequential.Purples_r)
-        fig.update_layout(height=400, showlegend=False)
+        fig.update_layout(height=400, showlegend=True)
         fig.update_traces(textposition='inside', textinfo='percent+label')
-        st.plotly_chart(fig, use_container_width=True)
 
 elif dashboard == "Análise das Aulas":
     # Header
