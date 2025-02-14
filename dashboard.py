@@ -186,6 +186,7 @@ elif dashboard == "Análise das Aulas":
         try:
             conteudos = pd.read_csv("frequencia_por_disciplina.csv")
 
+
             # Pré-processamento
             conteudos = conteudos[conteudos['StPresencaFalta'] == 'P']
             conteudos['NomeDisciplina'] = conteudos['NomeDisciplina'].astype(str).str.strip()
